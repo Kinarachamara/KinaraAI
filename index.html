@@ -3,42 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>මගේම AI</title>
+<title>Kinara AI</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
-body{background:#0b0b14;background-image:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(168,85,247,.12) 0%,transparent 50%);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px}
-.container{width:100%;max-width:460px;height:90vh;max-height:720px;background:rgba(22,22,36,.95);backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden}
-.header{background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);color:#fff;padding:18px 20px;text-align:center;position:relative}
-.header h1{font-size:1.3rem;font-weight:600}
-.header p{font-size:.75rem;opacity:.85;margin-top:4px}
-.status{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:10px;height:10px;background:#4ade80;border-radius:50%;box-shadow:0 0 8px #4ade80}
-.messages{flex:1;padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:85%;padding:12px 16px;border-radius:18px;line-height:1.5;font-size:.92rem;animation:slideIn .25s ease}
-@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.bot{background:#1e1e32;color:#e2e8f0;align-self:flex-start;border-bottom-left-radius:6px;border:1px solid rgba(255,255,255,.05)}
-.user{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
-.input-area{display:flex;padding:14px 16px;gap:10px;background:rgba(15,15,25,.8);border-top:1px solid rgba(255,255,255,.06)}
-#input{flex:1;padding:14px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.1);background:#1a1a2e;color:#fff;font-size:.95rem;outline:none}
-#input:focus{border-color:#6366f1}
-#send{width:50px;height:50px;border-radius:50%;border:none;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-#send:hover{transform:scale(1.06)}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', system-ui, sans-serif; }
+  body {
+    background: #0b0b14;
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.15) 0%, transparent 50%),
+                      radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.12) 0%, transparent 50%);
+    min-height:100vh; display:flex; justify-content:center; align-items:center; padding:16px;
+  }
+  .container {
+    width:100%; max-width:460px; height:90vh; max-height:720px;
+    background: rgba(22,22,36,0.95);
+    backdrop-filter: blur(20px);
+    border-radius:24px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+    color:white; padding:18px 20px; text-align:center; position:relative;
+  }
+  .header h1 { font-size:1.3rem; font-weight:600; letter-spacing:0.3px; }
+  .header p { font-size:0.75rem; opacity:0.85; margin-top:4px; }
+  .status {
+    position:absolute; right:16px; top:50%; transform:translateY(-50%);
+    width:10px; height:10px; background:#4ade80; border-radius:50%;
+    box-shadow:0 0 8px #4ade80;
+  }
+  .messages {
+    flex:1; padding:18px; overflow-y:auto; display:flex; flex-direction:column; gap:12px;
+    scrollbar-width: thin; scrollbar-color: #333 transparent;
+  }
+  .msg {
+    max-width:85%; padding:12px 16px; border-radius:18px; line-height:1.5;
+    font-size:0.92rem; animation: slideIn 0.25s ease;
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform:translateY(10px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .bot {
+    background: #1e1e32;
+    color: #e2e8f0;
+    align-self:flex-start;
+    border-bottom-left-radius:6px;
+    border:1px solid rgba(255,255,255,0.05);
+  }
+  .user {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color:white;
+    align-self:flex-end;
+    border-bottom-right-radius:6px;
+  }
+  .input-area {
+    display:flex; padding:14px 16px; gap:10px;
+    background: rgba(15,15,25,0.8);
+    border-top:1px solid rgba(255,255,255,0.06);
+  }
+  #input {
+    flex:1; padding:14px 18px; border-radius:50px;
+    border:1px solid rgba(255,255,255,0.1);
+    background: #1a1a2e; color:white; font-size:0.95rem; outline:none;
+    transition: border-color 0.2s;
+  }
+  #input:focus { border-color: #6366f1; }
+  #input::placeholder { color:#64748b; }
+  #send {
+    width:50px; height:50px; border-radius:50%; border:none;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color:white; font-size:1.2rem; cursor:pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #send:hover { transform:scale(1.06); box-shadow:0 4px 15px rgba(99,102,241,0.4); }
+  #send:active { transform:scale(0.96); }
+  .loading { color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px; }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header"><div class="status"></div><h1>මගේම AI</h1><p>ඔයාගේ personal chatbot</p></div>
-<div class="messages" id="messages"><div class="msg bot">හායි! 👋 මම ඔයාගේ AI එක. මොකක්ද අහන්නේ?</div></div>
-<div class="input-area"><input type="text" id="input" placeholder="ප්‍රශ්නය ටයිප් කරන්න..." autocomplete="off"><button id="send">➤</button></div>
+  <div class="header">
+    <div class="status"></div>
+    <h1>මගේම AI</h1>
+    <p>ඔයාගේ personal chatbot</p>
+  </div>
+  <div class="messages" id="messages">
+    <div class="msg bot loading">📚 Knowledge load වෙමින්...</div>
+  </div>
+  <div class="input-area">
+    <input type="text" id="input" placeholder="ප්‍රශ්නය ටයිප් කරන්න..." autocomplete="off" disabled>
+    <button id="send" disabled>➤</button>
+  </div>
 </div>
 <script>
-const qa={"hi":"හායි! කොහොමද?","hello":"Hello! කොහොමද ඔයා?","hellow":"Hello! කොහොමද?","හායි":"හායි! කොහොමද?","how are you":"මම හොඩට ඉන්නවා! ඔයා කොහොමද?","කොහොමද":"මම හොඩට ඉන්නවා. ඔයාට කොහොමද?","thanks":"ස්තූතියි!","bye":"බයි! ආයුබෝවන්!","sri lanka":"ශ්‍රී ලංකාව දකුණු ආසියාවේ ඇති දූපත් රටක්.","ශ්‍රී ලංකාව":"දකුණු ආසියාවේ ඇති දූපත් රටක්.","python":"Programming language එකක්.","ai":"Artificial Intelligence - කෘතිම බුද්ධිය.","computer":"දත්ත සකසන යන්ත්‍රයක්.","colombo":"ශ්‍රී ලංකාවේ විශාලතම නගරය."};
-function tokenize(t){return(t.toLowerCase().match(/[\w\u0D80-\u0DFF]+/g)||[])}
-function getAnswer(question){const q=question.trim();if(!q)return null;const ql=q.toLowerCase();if(qa[q])return qa[q];if(qa[ql])return qa[ql];for(const[k,v] of Object.entries(qa)){const kl=k.toLowerCase();if(kl.includes(ql)&&ql.length>2)return v;if(ql.includes(kl)&&kl.length>2)return v}const qw=new Set(tokenize(q));if(!qw.size)return null;let best=null,bestS=0;for(const[k,v] of Object.entries(qa)){const kw=tokenize(k);if(!kw.length)continue;let c=0;for(const w of kw)if(qw.has(w))c++;const s=c/Math.max(kw.length,qw.size);if(s>bestS){bestS=s;best=v}}if(bestS>=0.4)return best;return "මට ඒ ගැන තොරතුරු නැහැ. වෙනත් විදිහට අහලා බලන්න 😊"}
-const messages=document.getElementById("messages"),input=document.getElementById("input");
-function addMsg(t,w){const d=document.createElement("div");d.className="msg "+w;d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
-function send(){const t=input.value.trim();if(!t)return;addMsg(t,"user");input.value="";setTimeout(()=>addMsg(getAnswer(t),"bot"),300)}
-document.getElementById("send").onclick=send;input.addEventListener("keypress",e=>{if(e.key==="Enter")send()});input.focus();
+let qa = {};
+
+async function loadKnowledge() {
+  try {
+    const res = await fetch('./knowledge/qa.json');
+    if (!res.ok) throw new Error('Failed to load');
+    qa = await res.json();
+    document.getElementById('messages').innerHTML = '<div class="msg bot">හායි! 👋 මම ඔයාගේ AI එක. මොකක්ද අහන්නේ?</div>';
+    document.getElementById('input').disabled = false;
+    document.getElementById('send').disabled = false;
+    document.getElementById('input').focus();
+  } catch (e) {
+    document.getElementById('messages').innerHTML = '<div class="msg bot">⚠️ knowledge/qa.json load වුණේ නැහැ. File එක තියෙනවද බලන්න.</div>';
+  }
+}
+
+function tokenize(text) {
+  return (text.toLowerCase().match(/[\w\u0D80-\u0DFF]+/g) || []);
+}
+
+function getAnswer(question) {
+  const q = question.trim();
+  if (!q) return null;
+  const qLower = q.toLowerCase();
+
+  // Exact
+  if (qa[q]) return qa[q];
+  if (qa[qLower]) return qa[qLower];
+
+  // Partial
+  for (const [key, val] of Object.entries(qa)) {
+    const k = key.toLowerCase();
+    if (k.includes(qLower) && qLower.length > 2) return val;
+    if (qLower.includes(k) && k.length > 2) return val;
+  }
+
+  // Word overlap (similar questions)
+  const qWords = new Set(tokenize(q));
+  if (qWords.size === 0) return null;
+
+  let bestVal = null, bestScore = 0;
+  for (const [key, val] of Object.entries(qa)) {
+    const kWords = tokenize(key);
+    if (kWords.length === 0) continue;
+    let common = 0;
+    for (const w of kWords) if (qWords.has(w)) common++;
+    const score = common / Math.max(kWords.length, qWords.size);
+    if (score > bestScore) { bestScore = score; bestVal = val; }
+  }
+  if (bestScore >= 0.35) return bestVal;
+
+  return "මට ඒ ගැන තොරතුරු නැහැ. වෙනත් විදිහට අහලා බලන්න 😊";
+}
+
+const messagesEl = document.getElementById("messages");
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send");
+
+function addMsg(text, who) {
+  const div = document.createElement("div");
+  div.className = "msg " + who;
+  div.textContent = text;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  addMsg(text, "user");
+  input.value = "";
+  input.focus();
+  setTimeout(() => addMsg(getAnswer(text), "bot"), 280 + Math.random() * 180);
+}
+
+sendBtn.onclick = send;
+input.addEventListener("keypress", e => { if (e.key === "Enter") send(); });
+
+loadKnowledge();
 </script>
 </body>
 </html>
