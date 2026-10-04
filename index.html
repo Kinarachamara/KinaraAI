@@ -5,46 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>මගේම AI</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:12px; }
-.container { width:100%; max-width:480px; height:92vh; max-height:780px; background:#1a1a2e; border-radius:20px; box-shadow:0 25px 50px rgba(0,0,0,0.45); display:flex; flex-direction:column; overflow:hidden; border:1px solid #3a3a5a; }
-.header { background:linear-gradient(90deg,#7b68ee,#6a5acd); color:white; padding:16px; text-align:center; font-size:1.25rem; font-weight:600; }
-.header small { display:block; font-size:0.78rem; opacity:0.9; margin-top:3px; font-weight:400; }
-.messages { flex:1; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; }
-.msg { max-width:88%; padding:11px 15px; border-radius:16px; line-height:1.45; font-size:0.95rem; white-space:pre-wrap; }
-.bot { background:#252545; color:#e8e8ff; align-self:flex-start; border-bottom-left-radius:4px; }
-.user { background:linear-gradient(135deg,#7b68ee,#6a5acd); color:white; align-self:flex-end; border-bottom-right-radius:4px; }
-.input-area { display:flex; padding:12px; background:#16162b; gap:8px; border-top:1px solid #2e2e4e; }
-#input { flex:1; padding:13px 16px; border-radius:25px; border:1px solid #3a3a5a; background:#252545; color:white; font-size:1rem; outline:none; }
-#send { width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,#7b68ee,#6a5acd); color:white; font-size:1.3rem; cursor:pointer; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
+body{background:#0b0b14;background-image:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(168,85,247,.12) 0%,transparent 50%);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px}
+.container{width:100%;max-width:460px;height:90vh;max-height:720px;background:rgba(22,22,36,.95);backdrop-filter:blur(20px);border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden}
+.header{background:linear-gradient(135deg,#6366f1,#8b5cf6,#a855f7);color:#fff;padding:18px 20px;text-align:center;position:relative}
+.header h1{font-size:1.3rem;font-weight:600}
+.header p{font-size:.75rem;opacity:.85;margin-top:4px}
+.status{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:10px;height:10px;background:#4ade80;border-radius:50%;box-shadow:0 0 8px #4ade80}
+.messages{flex:1;padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:85%;padding:12px 16px;border-radius:18px;line-height:1.5;font-size:.92rem;animation:slideIn .25s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.bot{background:#1e1e32;color:#e2e8f0;align-self:flex-start;border-bottom-left-radius:6px;border:1px solid rgba(255,255,255,.05)}
+.user{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.input-area{display:flex;padding:14px 16px;gap:10px;background:rgba(15,15,25,.8);border-top:1px solid rgba(255,255,255,.06)}
+#input{flex:1;padding:14px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.1);background:#1a1a2e;color:#fff;font-size:.95rem;outline:none}
+#input:focus{border-color:#6366f1}
+#send{width:50px;height:50px;border-radius:50%;border:none;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#send:hover{transform:scale(1.06)}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">මගේම AI <small>Simple Q&A Chatbot - Upload full index.html from zip for complete QA</small></div>
-  <div class="messages" id="messages">
-    <div class="msg bot">හායි! මම ඔයාගේ AI එක. ප්‍රශ්නයක් අහන්න. (Full version is in the zip file)</div>
-  </div>
-  <div class="input-area">
-    <input type="text" id="input" placeholder="ප්‍රශ්නය ටයිප් කරන්න..." autocomplete="off">
-    <button id="send">➤</button>
-  </div>
+<div class="header"><div class="status"></div><h1>මගේම AI</h1><p>ඔයාගේ personal chatbot</p></div>
+<div class="messages" id="messages"><div class="msg bot">හායි! 👋 මම ඔයාගේ AI එක. මොකක්ද අහන්නේ?</div></div>
+<div class="input-area"><input type="text" id="input" placeholder="ප්‍රශ්නය ටයිප් කරන්න..." autocomplete="off"><button id="send">➤</button></div>
 </div>
 <script>
-const qa = {"hi": "හායි! කොහොමද?", "hello": "Hello! කොහොමද ඔයා?", "hellow": "Hello! කොහොමද?", "how are you": "මම හොඩට ඉන්නවා! ඔයා කොහොමද?", "thanks": "ස්තූතියි!", "bye": "බයි! ආයුබෝවන්!", "sri lanka": "ශ්‍රී ලංකාව දකුණු ආසියාවේ ඇති දූපත් රටක්.", "python": "Programming language එකක්.", "ai": "Artificial Intelligence - කෘතිම බුද්ධිය."};
-function getAnswer(q) {
-  q = q.trim().toLowerCase();
-  if (qa[q]) return qa[q];
-  for (const [k,v] of Object.entries(qa)) if (k.toLowerCase().includes(q) || q.includes(k.toLowerCase())) return v;
-  return "මට ඒ ගැන තොරතුරු නැහැ. Full version එක zip එකෙන් download කරන්න.";
-}
-const messages = document.getElementById("messages");
-const input = document.getElementById("input");
-function addMsg(t, w) { const d=document.createElement("div"); d.className="msg "+w; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; }
-function send() { const t=input.value.trim(); if(!t)return; addMsg(t,"user"); input.value=""; setTimeout(()=>addMsg(getAnswer(t),"bot"),300); }
-document.getElementById("send").onclick=send;
-input.addEventListener("keypress",e=>{if(e.key==="Enter")send();});
-input.focus();
+const qa={"hi":"හායි! කොහොමද?","hello":"Hello! කොහොමද ඔයා?","hellow":"Hello! කොහොමද?","හායි":"හායි! කොහොමද?","how are you":"මම හොඩට ඉන්නවා! ඔයා කොහොමද?","කොහොමද":"මම හොඩට ඉන්නවා. ඔයාට කොහොමද?","thanks":"ස්තූතියි!","bye":"බයි! ආයුබෝවන්!","sri lanka":"ශ්‍රී ලංකාව දකුණු ආසියාවේ ඇති දූපත් රටක්.","ශ්‍රී ලංකාව":"දකුණු ආසියාවේ ඇති දූපත් රටක්.","python":"Programming language එකක්.","ai":"Artificial Intelligence - කෘතිම බුද්ධිය.","computer":"දත්ත සකසන යන්ත්‍රයක්.","colombo":"ශ්‍රී ලංකාවේ විශාලතම නගරය."};
+function tokenize(t){return(t.toLowerCase().match(/[\w\u0D80-\u0DFF]+/g)||[])}
+function getAnswer(question){const q=question.trim();if(!q)return null;const ql=q.toLowerCase();if(qa[q])return qa[q];if(qa[ql])return qa[ql];for(const[k,v] of Object.entries(qa)){const kl=k.toLowerCase();if(kl.includes(ql)&&ql.length>2)return v;if(ql.includes(kl)&&kl.length>2)return v}const qw=new Set(tokenize(q));if(!qw.size)return null;let best=null,bestS=0;for(const[k,v] of Object.entries(qa)){const kw=tokenize(k);if(!kw.length)continue;let c=0;for(const w of kw)if(qw.has(w))c++;const s=c/Math.max(kw.length,qw.size);if(s>bestS){bestS=s;best=v}}if(bestS>=0.4)return best;return "මට ඒ ගැන තොරතුරු නැහැ. වෙනත් විදිහට අහලා බලන්න 😊"}
+const messages=document.getElementById("messages"),input=document.getElementById("input");
+function addMsg(t,w){const d=document.createElement("div");d.className="msg "+w;d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
+function send(){const t=input.value.trim();if(!t)return;addMsg(t,"user");input.value="";setTimeout(()=>addMsg(getAnswer(t),"bot"),300)}
+document.getElementById("send").onclick=send;input.addEventListener("keypress",e=>{if(e.key==="Enter")send()});input.focus();
 </script>
 </body>
 </html>
