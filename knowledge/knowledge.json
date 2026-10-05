@@ -1,7 +1,7 @@
 {
   "what_is_ai": {
     "keywords": ["what", "ai"],
-    "answer": "AI කියන්නේ Artificial Intelligence.\nමම වගේ computer එකක් හිතන විදිහ! 🤖\nමට ගණන් step-by-step හදන්නත් පුළුවන්."
+    "answer": "AI කියන්නේ Artificial Intelligence.\nමම වගේ computer එකක් හිතන විදිහ! 🤖\nමට ගණන් step-by-step හදන්නත්, කතා කරන්නත් පුළුවන්."
   },
   "what_is_love": {
     "keywords": ["what", "love"],
@@ -9,11 +9,11 @@
   },
   "who_are_you": {
     "keywords": ["who", "you"],
-    "answer": "මම Kinara AI! ✨\nStep-by-step calculator එකක් + chat bot එකක්.\nගණන් හදන්න හෝ අහන්න — මම ඉන්නවා!"
+    "answer": "මම Kinara AI! ✨\nStep-by-step calculator + smart chat bot.\nv2 — තවත් බුද්ධිමත්, තවත් ලස්සන!"
   },
   "how_are_you": {
     "keywords": ["how", "you"],
-    "answer": "මම හොඳට ඉන්නවා! 😊\nඔයා කොහොමද?"
+    "answer": "මම හොඳට ඉන්නවා! 😊\nඔයා කොහොමද? කතා කරමු!"
   },
   "what_is_name": {
     "keywords": ["what", "name"],
@@ -30,5 +30,33 @@
   "bye_msg": {
     "keywords": ["bye"],
     "answer": "බායි! ආයෙත් එන්න 👋\nසුභ දවසක්!"
+  },
+  "help_me": {
+    "keywords": ["help"],
+    "answer": "මට මේවා කරන්න පුළුවන්:\n\n📐 ගණන් step-by-step\n• 11+22  • (100+50)*3  • 2^10  • sqrt(16)\n\n💬 අහන්න\n• ai mokakda?\n• oya kauda?\n• oya kohomada?\n• joke kiyanna\n\n🎤 Voice button එකෙන් කතා කරලත් පුළුවන්!"
+  },
+  "what_time": {
+    "keywords": ["what", "time"],
+    "answer": "TIME_NOW"
+  },
+  "what_date": {
+    "keywords": ["what", "date"],
+    "answer": "DATE_NOW"
+  },
+  "tell_joke": {
+    "keywords": ["joke"],
+    "answer": "JOKE_RANDOM"
+  },
+  "what_math": {
+    "keywords": ["what", "math"],
+    "answer": "ගණිතය කියන්නේ අංක + නීති! 🧮\nමට + − × ÷ ^ √ % වගේ ගණන් step-by-step හදන්න පුළුවන්.\nඋදා: 25*4+10 හෝ sqrt(144)"
+  },
+  "weather_q": {
+    "keywords": ["what", "weather"],
+    "answer": "මට live weather බලන්න බැහැ 😅\nනමුත් ඔයාට window එකෙන් පිටත බලන්න පුළුවන්! ☀️🌧️"
+  },
+  "your_age": {
+    "keywords": ["you", "age"],
+    "answer": "මම code එකකින් හැදුණු AI එකක් — වයසක් නැහැ 😄\nනමුත් මම හැමදාම ඉගෙන ගන්නවා!"
   }
 }
