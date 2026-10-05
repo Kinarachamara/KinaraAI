@@ -16,7 +16,7 @@
     "ඔයා", "උඹ", "තමුසේ", "ඔයාගේ", "ඔයාලා", "ඔයාට", "ඔබ", "උඹලා", "උඹේ", "ඔයායි"
   ],
   "ai": [
-    "ai", "kinara", "bot", "chatgpt", "bota", "robot", "chata", "llm",
+    "ai", "kinara", "bot", "chatgpt", "bota", "robot", "chata", "llm", "assistant",
     "ඒයි", "බොට්", "චැට්බොට්", "රොබෝ", "කෘත්‍රිම බුද්ධිය"
   ],
   "love": [
@@ -38,5 +38,33 @@
   "number": [
     "kiyada", "keeyada", "kiyala", "ganana", "kyda", "kochcharada", "keeyakda",
     "කීයද", "කීයක්ද", "කොච්චරද", "ගණන", "කොපමණද", "අංකය"
+  ],
+  "help": [
+    "help", "helpme", "udaw", "udawuna", "sahaya",
+    "උදව්", "උදව්ව", "සහාය", "හෙල්ප්"
+  ],
+  "time": [
+    "time", "welawa", "vela", "clock", "hour",
+    "වෙලාව", "කාලය", "පැය", "මිනිත්තු"
+  ],
+  "date": [
+    "date", "dinaya", "day", "today", "dawasa",
+    "දිනය", "දවස", "අද", "දින"
+  ],
+  "joke": [
+    "joke", "hina", "funny", "laugh", "vinoda",
+    "හාස්‍යය", "හිනා", "විනෝද", "ජෝක්"
+  ],
+  "math": [
+    "math", "ganithaya", "calculate", "calc", "ganana",
+    "ගණිතය", "ගණන්", "ගණනය"
+  ],
+  "weather": [
+    "weather", "kalagawa", "rain", "sun", "cloud",
+    "කාලගුණය", "වැස්ස", "හිරු", "වළාකුළු"
+  ],
+  "age": [
+    "age", "wayasa", "old", "years",
+    "වයස", "අවුරුදු"
   ]
 }
