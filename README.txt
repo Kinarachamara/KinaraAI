@@ -1,20 +1,20 @@
-Kinara AI - Step-by-Step Calculator + Chat
+Kinara AI v2 - Step-by-Step Calculator + Smart Chat
 
 Run (web):
-  index.html file එක browser එකක open කරන්න
-  (හෝ python3 -m http.server 8000 කරලා http://localhost:8000)
+  Open index.html in browser
+  or visit https://kinarachamara.github.io/KinaraAI/
 
-Run (CLI chatbot):
+Run (CLI):
   python3 chatbot.py
 
-Features:
-  • ගණන් step-by-step හදනවා (වරහන්, *, /, +, -, ^)
-  • Keyword වලින් ප්‍රශ්න තේරුම් ගනී (mokakda, kauda, ...)
-  • Greetings + QA from knowledge/
+New in v2:
+  • sqrt() and % support
+  • Voice input (mic button)
+  • Chat history (localStorage)
+  • Typing indicator
+  • Copy calc answers
+  • Jokes, time, date
+  • Clear chat button
+  • Expanded knowledge
 
-Knowledge files:
-  knowledge/qa.json        - greetings & Q&A
-  knowledge/dictionary.json - keyword synonyms
-  knowledge/knowledge.json  - intent answers
-  knowledge/logic.json      - clarification rules
-  knowledge/greetings.json  - short greetings
+Knowledge files in knowledge/ folder.
