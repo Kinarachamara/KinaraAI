@@ -3,7 +3,7 @@
     {
       "id": "only_what",
       "when": {"tokens": ["what"], "tokenCount": 1},
-      "answer": "මොකක්ද කියලා අහන්නේ? 🤔\nඋදා:\n• ai mokakda?\n• oya name eka mokakda?\n• love mokakda?"
+      "answer": "මොකක්ද කියලා අහන්නේ? 🤔\nඋදා:\n• ai mokakda?\n• oya name eka mokakda?\n• love mokakda?\n• time mokakda?"
     },
     {
       "id": "only_who",
@@ -24,6 +24,11 @@
       "id": "only_name",
       "when": {"tokens": ["name"], "tokenCount": 1},
       "answer": "නම කියලා කාගේද?\nඋදා: oya name eka mokakda?"
+    },
+    {
+      "id": "only_help",
+      "when": {"tokens": ["help"], "tokenCount": 1},
+      "answer": "උදව් ඕනේද? 😊\n• ගණන් හදන්න: 11+22 හෝ sqrt(16)\n• අහන්න: ai mokakda? / joke kiyanna\n• Voice button එක භාවිතා කරන්න පුළුවන්!"
     },
     {
       "id": "number_with_value",
