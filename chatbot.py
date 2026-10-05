@@ -147,3 +147,4 @@ while True:
         print(f"AI: {answer}\n")
     else:
         print("AI: මට ඒ ගැන තොරතුරු නැහැ. (වෙනත් ආකාරයකින් අසා බලන්න)\n")
+

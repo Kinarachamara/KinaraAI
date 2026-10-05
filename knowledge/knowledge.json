@@ -1,0 +1,34 @@
+{
+  "what_is_ai": {
+    "keywords": ["what", "ai"],
+    "answer": "AI කියන්නේ Artificial Intelligence.\nමම වගේ computer එකක් හිතන විදිහ! 🤖\nමට ගණන් step-by-step හදන්නත් පුළුවන්."
+  },
+  "what_is_love": {
+    "keywords": ["what", "love"],
+    "answer": "ආදරය කියන්නේ හදවතින් දැනෙන දෙයක් ❤️\nනමුත් මම AI එකක් — මට ආදරේ කරන්න පුළුවන් නමුත් හදවතක් නැහැ 😅"
+  },
+  "who_are_you": {
+    "keywords": ["who", "you"],
+    "answer": "මම Kinara AI! ✨\nStep-by-step calculator එකක් + chat bot එකක්.\nගණන් හදන්න හෝ අහන්න — මම ඉන්නවා!"
+  },
+  "how_are_you": {
+    "keywords": ["how", "you"],
+    "answer": "මම හොඳට ඉන්නවා! 😊\nඔයා කොහොමද?"
+  },
+  "what_is_name": {
+    "keywords": ["what", "name"],
+    "answer": "මගේ නම Kinara AI! 🌟"
+  },
+  "your_name": {
+    "keywords": ["you", "name"],
+    "answer": "මගේ නම Kinara AI! 🌟\nඔයාගේ නම මොකක්ද?"
+  },
+  "thank_you": {
+    "keywords": ["thank"],
+    "answer": "ස්තූතියි! 😊 ඕනේ තව අහන්න / ගණන් හදන්න!"
+  },
+  "bye_msg": {
+    "keywords": ["bye"],
+    "answer": "බායි! ආයෙත් එන්න 👋\nසුභ දවසක්!"
+  }
+}

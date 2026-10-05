@@ -2,181 +2,389 @@
 <html lang="si">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Kinara AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', system-ui, sans-serif; }
-  body {
-    background: #0b0b14;
-    background-image: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.15) 0%, transparent 50%),
-                      radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.12) 0%, transparent 50%);
-    min-height:100vh; display:flex; justify-content:center; align-items:center; padding:16px;
-  }
-  .container {
-    width:100%; max-width:460px; height:90vh; max-height:720px;
-    background: rgba(22,22,36,0.95);
-    backdrop-filter: blur(20px);
-    border-radius:24px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
-    display:flex; flex-direction:column; overflow:hidden;
-  }
-  .header {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
-    color:white; padding:18px 20px; text-align:center; position:relative;
-  }
-  .header h1 { font-size:1.3rem; font-weight:600; letter-spacing:0.3px; }
-  .header p { font-size:0.75rem; opacity:0.85; margin-top:4px; }
-  .status {
-    position:absolute; right:16px; top:50%; transform:translateY(-50%);
-    width:10px; height:10px; background:#4ade80; border-radius:50%;
-    box-shadow:0 0 8px #4ade80;
-  }
-  .messages {
-    flex:1; padding:18px; overflow-y:auto; display:flex; flex-direction:column; gap:12px;
-    scrollbar-width: thin; scrollbar-color: #333 transparent;
-  }
-  .msg {
-    max-width:85%; padding:12px 16px; border-radius:18px; line-height:1.5;
-    font-size:0.92rem; animation: slideIn 0.25s ease;
-  }
-  @keyframes slideIn {
-    from { opacity:0; transform:translateY(10px); }
-    to { opacity:1; transform:translateY(0); }
-  }
-  .bot {
-    background: #1e1e32;
-    color: #e2e8f0;
-    align-self:flex-start;
-    border-bottom-left-radius:6px;
-    border:1px solid rgba(255,255,255,0.05);
-  }
-  .user {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color:white;
-    align-self:flex-end;
-    border-bottom-right-radius:6px;
-  }
-  .input-area {
-    display:flex; padding:14px 16px; gap:10px;
-    background: rgba(15,15,25,0.8);
-    border-top:1px solid rgba(255,255,255,0.06);
-  }
-  #input {
-    flex:1; padding:14px 18px; border-radius:50px;
-    border:1px solid rgba(255,255,255,0.1);
-    background: #1a1a2e; color:white; font-size:0.95rem; outline:none;
-    transition: border-color 0.2s;
-  }
-  #input:focus { border-color: #6366f1; }
-  #input::placeholder { color:#64748b; }
-  #send {
-    width:50px; height:50px; border-radius:50%; border:none;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color:white; font-size:1.2rem; cursor:pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    display:flex; align-items:center; justify-content:center;
-  }
-  #send:hover { transform:scale(1.06); box-shadow:0 4px 15px rgba(99,102,241,0.4); }
-  #send:active { transform:scale(0.96); }
-  .loading { color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px; }
+:root {
+  --bg: #08080f;
+  --card: rgba(18,18,32,0.92);
+  --accent: #7c6cff;
+  --accent2: #a855f7;
+  --text: #e8e8f0;
+  --muted: #9494a8;
+  --bot-bg: #16162a;
+  --user-grad: linear-gradient(135deg,#6366f1,#8b5cf6);
+  --border: rgba(255,255,255,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',system-ui,sans-serif; }
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 15% 40%, rgba(99,102,241,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(168,85,247,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(99,102,241,0.08) 0%, transparent 40%);
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; justify-content: center; align-items: center;
+  padding: 12px;
+}
+.container {
+  width: 100%; max-width: 440px;
+  height: 94vh; height: 94dvh; max-height: 780px;
+  background: var(--card);
+  backdrop-filter: blur(24px);
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03);
+}
+.header {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  color: white; padding: 18px 20px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; position: relative; }
+.header p { font-size: 0.75rem; opacity: 0.9; margin-top: 3px; font-weight: 500; position: relative; }
+.status {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px; font-size: 0.7rem; opacity: 0.95;
+  background: rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 20px;
+  position: relative;
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+  box-shadow: 0 0 8px #4ade80; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.messages {
+  flex: 1; padding: 16px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+  scroll-behavior: smooth;
+}
+.messages::-webkit-scrollbar { width: 4px; }
+.messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+.msg {
+  max-width: 88%; padding: 12px 16px; border-radius: 18px;
+  line-height: 1.55; font-size: 0.9rem;
+  white-space: pre-wrap; word-break: break-word;
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+.bot {
+  background: var(--bot-bg); color: var(--text);
+  align-self: flex-start;
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 5px;
+}
+.user {
+  background: var(--user-grad); color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.25);
+}
+.calc {
+  background: #0e0e1c !important;
+  border: 1px solid rgba(99,102,241,0.35) !important;
+  font-family: 'Inter', ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+.input-area {
+  display: flex; padding: 12px 14px; gap: 10px;
+  background: rgba(10,10,20,0.7);
+  border-top: 1px solid var(--border);
+  align-items: center;
+}
+#input {
+  flex: 1; padding: 14px 18px; border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #141428; color: white; outline: none;
+  font-size: 0.92rem; transition: border-color 0.2s, box-shadow 0.2s;
+}
+#input::placeholder { color: var(--muted); }
+#input:focus {
+  border-color: rgba(124,108,255,0.55);
+  box-shadow: 0 0 0 3px rgba(124,108,255,0.12);
+}
+#send {
+  width: 48px; height: 48px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white; font-size: 1.15rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+  flex-shrink: 0;
+}
+#send:hover { transform: scale(1.05); }
+#send:active { transform: scale(0.93); }
+.suggestions {
+  display: flex; gap: 6px; padding: 0 14px 10px;
+  overflow-x: auto; flex-wrap: nowrap;
+}
+.suggestions::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0; padding: 6px 12px; border-radius: 20px;
+  background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);
+  color: #c4b5fd; font-size: 0.72rem; cursor: pointer;
+  white-space: nowrap; transition: background 0.15s;
+}
+.chip:hover { background: rgba(99,102,241,0.22); }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <div class="status"></div>
     <h1>Kinara AI</h1>
-    <p>Have a nice day...</p>
+    <p>Step Calculator + Smart Chat</p>
+    <div class="status"><span class="status-dot"></span> Online</div>
   </div>
-  <div class="messages" id="messages">
-    <div class="msg bot loading">📚 Knowledge load වෙමින්...</div>
+  <div class="messages" id="messages"></div>
+  <div class="suggestions" id="suggestions">
+    <span class="chip" data-q="111*{1111+234546}">111*{1111+234546}</span>
+    <span class="chip" data-q="ai mokakda?">ai mokakda?</span>
+    <span class="chip" data-q="oya kauda?">oya kauda?</span>
+    <span class="chip" data-q="oya kohomada?">oya kohomada?</span>
+    <span class="chip" data-q="(100+200)*3">(100+200)*3</span>
   </div>
   <div class="input-area">
-    <input type="text" id="input" placeholder="ප්‍රශ්නය ටයිප් කරන්න..." autocomplete="off" disabled>
-    <button id="send" disabled>➤</button>
+    <input id="input" placeholder="ගණන් හදන්න හෝ අහන්න..." autocomplete="off" enterkeyhint="send">
+    <button id="send" aria-label="Send">➤</button>
   </div>
 </div>
+
 <script>
-let qa = {};
-
-async function loadKnowledge() {
-  try {
-    const res = await fetch('./knowledge/qa.json');
-    if (!res.ok) throw new Error('Failed to load');
-    qa = await res.json();
-    document.getElementById('messages').innerHTML = '<div class="msg bot">හායි! 👋 මම ඔයාගේ AI එක. මොකක්ද අහන්නේ?</div>';
-    document.getElementById('input').disabled = false;
-    document.getElementById('send').disabled = false;
-    document.getElementById('input').focus();
-  } catch (e) {
-    document.getElementById('messages').innerHTML = '<div class="msg bot">⚠️ knowledge/qa.json load වුණේ නැහැ. File එක තියෙනවද බලන්න.</div>';
-  }
-}
-
-function tokenize(text) {
-  return (text.toLowerCase().match(/[\w\u0D80-\u0DFF]+/g) || []);
-}
-
-function getAnswer(question) {
-  const q = question.trim();
-  if (!q) return null;
-  const qLower = q.toLowerCase();
-
-  // Exact
-  if (qa[q]) return qa[q];
-  if (qa[qLower]) return qa[qLower];
-
-  // Partial
-  for (const [key, val] of Object.entries(qa)) {
-    const k = key.toLowerCase();
-    if (k.includes(qLower) && qLower.length > 2) return val;
-    if (qLower.includes(k) && k.length > 2) return val;
-  }
-
-  // Word overlap (similar questions)
-  const qWords = new Set(tokenize(q));
-  if (qWords.size === 0) return null;
-
-  let bestVal = null, bestScore = 0;
-  for (const [key, val] of Object.entries(qa)) {
-    const kWords = tokenize(key);
-    if (kWords.length === 0) continue;
-    let common = 0;
-    for (const w of kWords) if (qWords.has(w)) common++;
-    const score = common / Math.max(kWords.length, qWords.size);
-    if (score > bestScore) { bestScore = score; bestVal = val; }
-  }
-  if (bestScore >= 0.35) return bestVal;
-
-  return "මට ඒ ගැන තොරතුරු නැහැ. වෙනත් විදිහට අහලා බලන්න 😊";
-}
-
 const messagesEl = document.getElementById("messages");
 const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 
-function addMsg(text, who) {
-  const div = document.createElement("div");
-  div.className = "msg " + who;
-  div.textContent = text;
-  messagesEl.appendChild(div);
+let DICT = {
+  "what": ["mokakda","mona","monawada","mokada","moko","what","wd","?"],
+  "who": ["kauda","kawda","who"],
+  "how": ["kohomada","kohoma","how"],
+  "you": ["oya","uba","you","oyage"],
+  "ai": ["ai","kinara","bot"],
+  "love": ["love","adarei","adare","ආදරය"],
+  "name": ["name","nama","නම"],
+  "thank": ["thanks","thank","thankyou","ස්තූතියි"],
+  "bye": ["bye","goodbye","බායි"],
+  "number": ["kiyada","keeyada","kiyala"]
+};
+let GREET = {
+  "hi":"හායි! කොහොමද? 😊",
+  "hello":"Hello! කොහොමද?",
+  "හායි":"හායි! කොහොමද?",
+  "හලෝ":"හලෝ හලෝ!",
+  "ආයුබෝවන්":"ආයුබෝවන්! 🙏"
+};
+let KNOW = {};
+let LOGIC = { rules: [] };
+let QA = {};
+
+function normalizeBraces(s) {
+  return s.replace(/\{/g,'(').replace(/\}/g,')').replace(/\[/g,'(').replace(/\]/g,')');
+}
+function isMathExpression(text) {
+  const t = text.replace(/\s+/g,'');
+  if (t.length < 1) return false;
+  if (/[a-zA-Z\u0D80-\u0DFF]{2,}/.test(text)) return false;
+  return /^[\d+\-*/().%^{}\[\]x÷\s]+$/.test(t) && /\d/.test(t);
+}
+function safeEval(expr) {
+  try {
+    let c = expr.replace(/x/gi,'*').replace(/÷/g,'/').replace(/\^/g,'**');
+    if (/\/\s*0(?![.\d])/.test(c)) throw new Error("DIV0");
+    const r = Function('"use strict"; return (' + c + ')')();
+    if (!isFinite(r)) throw new Error("INF");
+    return r;
+  } catch (e) { return null; }
+}
+function formatNum(n) {
+  if (Number.isInteger(n)) return n.toLocaleString('en-US');
+  return parseFloat(n.toFixed(10)).toString();
+}
+function calculateStepByStep(original) {
+  let expr = original.replace(/\s+/g,'').replace(/x/gi,'*').replace(/÷/g,'/').replace(/\^/g,'**');
+  expr = normalizeBraces(expr);
+  if (safeEval(expr) === null) return null;
+  let steps = [], current = expr, stepNo = 1, MAX = 40;
+  steps.push(`📐 ප්‍රශ්නය: ${original}`);
+  steps.push(`━━━━━━━━━━━━━━━`);
+  while (/\(/.test(current) && stepNo < MAX) {
+    const match = current.match(/\(([^()]+)\)/);
+    if (!match) break;
+    const inside = match[1], val = safeEval(inside);
+    if (val === null) break;
+    steps.push(`පියවර ${stepNo}: (${inside}) = ${formatNum(val)}`);
+    current = current.replace(`(${inside})`, String(val));
+    stepNo++;
+  }
+  while (/\*\*/.test(current) && stepNo < MAX) {
+    const m = current.match(/([\d.]+)\*\*([\d.]+)/);
+    if (!m) break;
+    const part = m[0], val = safeEval(part);
+    if (val === null) break;
+    steps.push(`පියවර ${stepNo}: ${part} = ${formatNum(val)}`);
+    current = current.replace(part, String(val));
+    stepNo++;
+  }
+  while (/[\d.]+\s*[\*\/]\s*[\d.]+/.test(current) && stepNo < MAX) {
+    const m = current.match(/([\d.]+)([\*\/])([\d.]+)/);
+    if (!m) break;
+    const part = m[0], val = safeEval(part);
+    if (val === null) break;
+    steps.push(`පියවර ${stepNo}: ${part} = ${formatNum(val)}`);
+    current = current.replace(part, String(val));
+    stepNo++;
+  }
+  while (stepNo < MAX) {
+    const m = current.match(/(-?[\d.]+)([+\-])(-?[\d.]+)/);
+    if (!m) break;
+    const part = m[0], val = safeEval(part);
+    if (val === null || String(val) === part) break;
+    steps.push(`පියවර ${stepNo}: ${part} = ${formatNum(val)}`);
+    current = current.replace(part, String(val));
+    stepNo++;
+  }
+  const finalResult = safeEval(current);
+  if (finalResult === null) return null;
+  steps.push(`━━━━━━━━━━━━━━━`);
+  steps.push(`✅ අවසාන උත්තරේ: ${formatNum(finalResult)}`);
+  if (/[\{\(\[]/.test(original)) {
+    steps.push(`\n💡 මුලින්ම වරහන් ඇතුළේ හදලා, පස්සේ බාහිර ගණන හදනවා.`);
+  }
+  return steps.join('\n');
+}
+
+function tokenize(text) {
+  return text.toLowerCase()
+    .replace(/[^\w\u0D80-\u0DFF\s]/g, ' ')
+    .split(/\s+/).filter(Boolean);
+}
+function detectTokens(words) {
+  const found = new Set();
+  for (const [token, synonyms] of Object.entries(DICT)) {
+    for (const w of words) {
+      if (synonyms.includes(w) || w === token) found.add(token);
+    }
+  }
+  if (words.some(w => /^\d+(\.\d+)?$/.test(w))) found.add("has_number");
+  return found;
+}
+function matchKnowledge(words) {
+  const wordSet = new Set(words);
+  let best = null, bestScore = 0;
+  for (const item of Object.values(KNOW)) {
+    const kws = item.keywords || [];
+    let score = 0;
+    for (const kw of kws) {
+      const synonyms = DICT[kw] || [kw];
+      if (synonyms.some(s => wordSet.has(s)) || wordSet.has(kw)) score++;
+    }
+    if (score > bestScore && score === kws.length) {
+      bestScore = score;
+      best = item.answer;
+    }
+  }
+  return best;
+}
+function applyLogicRules(tokens, words) {
+  const tokenArr = [...tokens];
+  const hasNumber = tokens.has("has_number") || words.some(w => /^\d+/.test(w));
+  for (const rule of (LOGIC.rules || [])) {
+    const when = rule.when || {};
+    const needed = when.tokens || [];
+    const countOk = when.tokenCount == null || tokenArr.length === when.tokenCount;
+    const hasAll = needed.every(t => tokens.has(t));
+    const numOk = when.containsNumber == null || when.containsNumber === hasNumber;
+    if (hasAll && countOk && numOk) {
+      if (rule.answer === "ASK_CLARIFICATION_NUMBER") {
+        return "කීයද කියලා අහනවා නම්, ඉලක්කම් එක්ක අහන්න.\nඋදා: 25 kiyada? හෝ 100+50";
+      }
+      return rule.answer;
+    }
+  }
+  return null;
+}
+function getAnswer(q) {
+  const trimmed = q.trim();
+  if (!trimmed) return { text: "කිසිම දෙයක් type කරලා නැහැ 😅" };
+  if (isMathExpression(trimmed)) {
+    const res = calculateStepByStep(trimmed);
+    if (res) return { text: res, isCalc: true };
+    return { text: `ගණිතයේ වැරද්දක් තියෙනවා 😅\nඋදා: 11+22  හෝ  111*{1111+234546}`, isCalc: true };
+  }
+  const low = trimmed.toLowerCase();
+  if (GREET[low]) return { text: GREET[low] };
+  if (QA[low]) return { text: QA[low] };
+  if (QA[trimmed]) return { text: QA[trimmed] };
+  const words = tokenize(trimmed);
+  const tokens = detectTokens(words);
+  const knowAns = matchKnowledge(words);
+  if (knowAns) return { text: knowAns };
+  const logicAns = applyLogicRules(tokens, words);
+  if (logicAns) return { text: logicAns };
+  for (const [g, ans] of Object.entries(GREET)) {
+    if (low.includes(g) || g.includes(low)) return { text: ans };
+  }
+  return {
+    text: `මේක ගණිතයක් හෝ මට තේරෙන ප්‍රශ්නයක් නෙවෙයි වගේ 🤔\n\nගණන් හදන්න:\n• 11+22\n• 111*{1111+234546}\n• (100+200)*3\n• 2^10\n\nඅහන්න:\n• ai mokakda?\n• oya kauda?\n• oya kohomada?\n\nඔයා දැම්මේ: ${trimmed}`
+  };
+}
+
+function addMsg(t, who, isCalc = false) {
+  const d = document.createElement("div");
+  d.className = "msg " + who + (isCalc ? " calc" : "");
+  d.textContent = t;
+  messagesEl.appendChild(d);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
-
-function send() {
-  const text = input.value.trim();
-  if (!text) return;
-  addMsg(text, "user");
+function send(text) {
+  const t = (text != null ? text : input.value).trim();
+  if (!t) return;
+  addMsg(t, "user");
   input.value = "";
-  input.focus();
-  setTimeout(() => addMsg(getAnswer(text), "bot"), 280 + Math.random() * 180);
+  const ans = getAnswer(t);
+  setTimeout(() => addMsg(ans.text, "bot", ans.isCalc), 160);
 }
+sendBtn.onclick = () => send();
+input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
+document.getElementById("suggestions").addEventListener("click", e => {
+  const chip = e.target.closest(".chip");
+  if (chip) send(chip.dataset.q);
+});
 
-sendBtn.onclick = send;
-input.addEventListener("keypress", e => { if (e.key === "Enter") send(); });
-
-loadKnowledge();
+async function loadAll() {
+  try {
+    const base = './knowledge/';
+    const [d, l, g, k, q] = await Promise.all([
+      fetch(base + 'dictionary.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(base + 'logic.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(base + 'greetings.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(base + 'knowledge.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(base + 'qa.json').then(r => r.ok ? r.json() : null).catch(() => null)
+    ]);
+    if (d) DICT = d;
+    if (l) LOGIC = l;
+    if (g) GREET = Object.assign({}, GREET, g);
+    if (k) KNOW = k;
+    if (q) QA = q;
+  } catch (e) {}
+  messagesEl.innerHTML = '';
+  addMsg(
+    "හායි! 👋 මම Kinara AI\n\nගණන් step-by-step හදන්න හෝ අහන්න.\nපහළ chips ටැප් කරලත් try කරන්න පුළුවන්!",
+    "bot"
+  );
+}
+loadAll();
+setTimeout(() => {
+  const test = "111*{1111+234546}";
+  addMsg(test, "user");
+  setTimeout(() => addMsg(getAnswer(test).text, "bot", true), 320);
+}, 600);
 </script>
 </body>
 </html>

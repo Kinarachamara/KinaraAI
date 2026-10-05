@@ -1,0 +1,34 @@
+{
+  "rules": [
+    {
+      "id": "only_what",
+      "when": {"tokens": ["what"], "tokenCount": 1},
+      "answer": "මොකක්ද කියලා අහන්නේ? 🤔\nඋදා:\n• ai mokakda?\n• oya name eka mokakda?\n• love mokakda?"
+    },
+    {
+      "id": "only_who",
+      "when": {"tokens": ["who"], "tokenCount": 1},
+      "answer": "කවුද කියලා අහන්නේ?\nඋදා: oya kauda? / ai kauda?"
+    },
+    {
+      "id": "only_how",
+      "when": {"tokens": ["how"], "tokenCount": 1},
+      "answer": "කොහොමද කියලා මොකක්ද අහන්නේ?\nඋදා: oya kohomada?"
+    },
+    {
+      "id": "only_number",
+      "when": {"tokens": ["number"], "tokenCount": 1},
+      "answer": "කීයද කියලා මොකක්ද අහන්නේ?\nඋදා: 25 kiyada? හෝ 100+50"
+    },
+    {
+      "id": "only_name",
+      "when": {"tokens": ["name"], "tokenCount": 1},
+      "answer": "නම කියලා කාගේද?\nඋදා: oya name eka mokakda?"
+    },
+    {
+      "id": "number_with_value",
+      "when": {"tokens": ["number"], "containsNumber": true},
+      "answer": "ASK_CLARIFICATION_NUMBER"
+    }
+  ]
+}
